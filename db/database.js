@@ -1,8 +1,13 @@
 const { Sequelize } = require('sequelize');
+const betterSqlite3 = require('better-sqlite3');
+
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: 'db.sqlite'
+  dialectModule: betterSqlite3,
+  storage: './db.sqlite' // Or wherever your .sqlite file is located
 });
+
+module.exports = { sequelize };
 
 const setup = async () => {
   await sequelize.sync({ force: true });
