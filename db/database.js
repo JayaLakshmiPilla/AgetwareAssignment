@@ -1,13 +1,16 @@
 const { Sequelize } = require('sequelize');
-const betterSqlite3 = require('better-sqlite3');
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  dialectModule: betterSqlite3,
-  storage: './db.sqlite' // Or wherever your .sqlite file is located
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false // important for Render SSL
+    }
+  }
 });
 
-module.exports = { sequelize };
+
 
 const setup = async () => {
   await sequelize.sync({ force: true });
