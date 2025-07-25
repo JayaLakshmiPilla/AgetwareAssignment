@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "ea12b2d8-c3fe-42c2-8319-5886e3f48ab7",
+		"name": "Bank Lending Backend API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42698707"
+	},
+	"item": [
+		{
+			"name": "LEND - Create Loan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customer_id\": \"cust001\",\n  \"loan_amount\": 100000,\n  \"loan_period_years\": 2,\n  \"interest_rate\": 5\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/loans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAYMENT - Make Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"amount\": 5000,\n  \"payment_type\": \"LUMP_SUM\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/loans/:loan_id/payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loan_id",
+						"payments"
+					],
+					"variable": [
+						{
+							"key": "loan_id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LEDGER - View Ledger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/loans/:loan_id/ledger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"loans",
+						":loan_id",
+						"ledger"
+					],
+					"variable": [
+						{
+							"key": "loan_id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OVERVIEW - Customer Loans",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/v1/customers/:customer_id/overview",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"customers",
+						":customer_id",
+						"overview"
+					],
+					"variable": [
+						{
+							"key": "customer_id"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
