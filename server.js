@@ -1,6 +1,16 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors'); // ✅ Step 1: Import CORS
 const app = express();
+
+// ✅ Step 2: Allow your Netlify frontend (replace with your actual frontend URL if different)
+const corsOptions = {
+  origin: 'https://rahul-bank-loan-frontend.netlify.app', // ← your Netlify frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+};
+
+app.use(cors(corsOptions)); // ✅ Step 3: Apply CORS middleware
 
 const { sequelize } = require('./db/database');
 const loanRoutes = require('./routes/loanRoutes');
